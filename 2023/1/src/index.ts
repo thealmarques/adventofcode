@@ -53,22 +53,22 @@ const partTwoResult = rawInput.split("\n").reduce<number>((total, line) => {
 
   wordsIndexMapping.sort((a, b) => b.index - a.index);
 
-  const start = wordsIndexMapping[0];
-  const end = wordsIndexMapping[wordsIndexMapping.length - 1];
+  const right = wordsIndexMapping[0];
+  const left = wordsIndexMapping[wordsIndexMapping.length - 1];
   let str = line;
 
-  if (start) {
+  if (right) {
     str =
-      str.substring(0, start.index) +
-      WORD_DIGITS[start.word] +
-      str.substring(start.index + WORD_DIGITS[start.word].length);
+      str.substring(0, right.index) +
+      WORD_DIGITS[right.word] +
+      str.substring(right.index + WORD_DIGITS[right.word].length);
   }
 
-  if (end) {
+  if (left) {
     str =
-      str.substring(0, end.index) +
-      WORD_DIGITS[end.word] +
-      str.substring(end.index + WORD_DIGITS[end.word].length);
+      str.substring(0, left.index) +
+      WORD_DIGITS[left.word] +
+      str.substring(left.index + WORD_DIGITS[left.word].length);
   }
 
   const numbers = str.replaceAll(/[^\d]+/g, "");
